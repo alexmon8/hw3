@@ -1,0 +1,231 @@
+/*
+  COMP 4610 GUI I - HW3: Dynamic Multiplication Table
+  Author: Alexi Montesinos
+  Email: alexi_montesinos@student.uml.edu
+  Description: Styles for the dynamic multiplication table web app.
+               Includes form layout, error display, and sticky-header table.
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+
+header {
+  text-align: center;
+  padding: 30px 0 24px;
+}
+
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #2c3e50;
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #e74c3c;
+}
+
+/* ── Main layout ─────────────────────────────────────────── */
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── Form ────────────────────────────────────────────────── */
+
+.form-section {
+  width: 100%;
+  max-width: 420px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 22px 24px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+legend {
+  font-weight: 600;
+  padding: 0 8px;
+  color: #2c3e50;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
+}
+
+/* Red border on invalid fields */
+.form-group input.input-error {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.12);
+}
+
+#generateBtn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  background-color: #2c3e50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#generateBtn:hover {
+  background-color: #3d5166;
+}
+
+/* ── Error messages ──────────────────────────────────────── */
+
+.error-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.error-message {
+  background-color: #fdecea;
+  border: 1px solid #e74c3c;
+  color: #c0392b;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.error-message ul {
+  margin: 6px 0 0 18px;
+}
+
+.error-message li {
+  margin-bottom: 3px;
+}
+
+/* ── Table section ───────────────────────────────────────── */
+
+.table-section {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+/*
+  Scrollable container — limits viewport height so the page never
+  grows unmanageably large; overflow:auto adds scrollbars as needed.
+*/
+.table-container {
+  overflow: auto;
+  max-height: 70vh;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Table ───────────────────────────────────────────────── */
+
+table {
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+table th,
+table td {
+  border: 1px solid #b0bec5;
+  padding: 7px 14px;
+  text-align: right;
+  min-width: 56px;
+}
+
+/*
+  Top-row header cells are sticky so they stay visible while
+  scrolling down through many rows.
+*/
+table thead th {
+  background-color: #2c3e50;
+  color: #fff;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/*
+  First-column header cells are sticky so they stay visible
+  while scrolling right through many columns.
+*/
+table tbody td:first-child {
+  background-color: #2c3e50;
+  color: #fff;
+  font-weight: 700;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+/* Corner cell needs both axes of stickiness and highest z-index */
+table thead th:first-child {
+  background-color: #1a252f;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  text-align: center;
+}
+
+/* Alternating row colors for readability */
+table tbody tr:nth-child(odd) td:not(:first-child) {
+  background-color: #ffffff;
+}
+
+table tbody tr:nth-child(even) td:not(:first-child) {
+  background-color: #eaf0f6;
+}
+
+table tbody tr:hover td:not(:first-child) {
+  background-color: #d5e8f5;
+}
